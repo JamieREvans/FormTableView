@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTWViewController : UIViewController
+@interface FTVViewController : UIViewController
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTWAppDelegate : UIResponder <UIApplicationDelegate>
+@interface FTVAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

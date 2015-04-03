@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'FormTableView', :exclusive => true do
+  pod "FormTableView", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "FormTableView", :path => "../"
+
+  pod 'Kiwi'
+  pod 'FBSnapshotTestCase'
+end

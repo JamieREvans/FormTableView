@@ -13,7 +13,7 @@
 @property (nonatomic) NSMutableArray *sectionedCellViews; // <NSArray> of <NSArray> of <UIView>
 @property (nonatomic) NSMutableArray *headerViews; // <UIView>
 @property (nonatomic) NSMutableArray *footerViews; // <UIView>
-@property (nonatomic) BOOL canEdit; // Only used for FormCellViews
+@property (nonatomic) BOOL editable; // Only used for FormCellViews
 
 @property (nonatomic) UIEdgeInsets defaultSeparatorInsets;
 

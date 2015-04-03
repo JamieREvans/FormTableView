@@ -136,12 +136,15 @@
     // Remove bottom table view inset
     [self setContentInset:UIEdgeInsetsZero];
     
+    // Listen for keyboard notifications
     [[KeyboardListener sharedInstance] addDelegate:self];
+    
+    // Add tap to resign
     [self addGestureRecognizer:(resigningTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignEverything:)])];
     [resigningTapGesture setDelegate:self];
     
     // Defaults to YES
-    [self setCanEdit:YES];
+    [self setEditable:YES];
     
     [super setDelegate:self];
     [super setDataSource:self];
@@ -219,9 +222,9 @@
     [self reloadData];
 }
 
-- (void)setCanEdit:(BOOL)canEdit
+- (void)setEditable:(BOOL)editable
 {
-    _canEdit = canEdit;
+    _editable = editable;
     
     [self reloadData];
 }
@@ -325,8 +328,8 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     
-    if(self.canEdit && !cell.userInteractionEnabled)[cell setUserInteractionEnabled:YES];
-    else if(!self.canEdit && cell.userInteractionEnabled)[cell setUserInteractionEnabled:NO];
+    if(self.editable && !cell.userInteractionEnabled)[cell setUserInteractionEnabled:YES];
+    else if(!self.editable && cell.userInteractionEnabled)[cell setUserInteractionEnabled:NO];
     
     return cell;
 }

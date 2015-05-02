@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Jamie Riley Evans. All rights reserved.
 //
 
-#import "FTVViewController.h"
 #import <FormTableView/FormTableView.h>
+#import "FTVViewController.h"
+#import "FormTableView+Initializers.h"
 
 @interface FTVViewController ()
 
@@ -25,11 +26,13 @@
 - (void)buildUI
 {
     FormTableView *tableView = [[FormTableView alloc] initWithFrame:self.view.bounds];
-    [tableView setSectionedCellViews:(@[@[[self viewWithColor:[UIColor redColor]], [self viewWithColor:[UIColor orangeColor]], [self viewWithColor:[UIColor yellowColor]]],
+    [tableView setSectionedCellViews:(@[@[[FormTableView textFieldWithTitle:@"Sample Field" type:FormTextFieldTypeNumbers isLastTextField:YES]],
+                                        @[[self viewWithColor:[UIColor redColor]], [self viewWithColor:[UIColor orangeColor]], [self viewWithColor:[UIColor yellowColor]]],
                                         @[[self viewWithColor:[UIColor greenColor]], [self viewWithColor:[UIColor blueColor]]],
                                         @[[self viewWithColor:[UIColor purpleColor]], [self viewWithColor:[UIColor magentaColor]]]].mutableCopy)];
-    [tableView setHeaderViews:[FormTableView headerViewsWithTitles:@[@"Hot", @"Cool", @"Warm"]]];
-    [tableView setFooterViews:[FormTableView footerViewsWithTitles:@[@"Above are our 'hot' colors",
+    [tableView setHeaderViews:[FormTableView headerViewsWithTitles:@[@"", @"Hot", @"Cool", @"Warm"]]];
+    [tableView setFooterViews:[FormTableView footerViewsWithTitles:@[@"",
+                                                                     @"Above are our 'hot' colors",
                                                                      @"Above are our 'cold' colors",
                                                                      @"Above are our 'warm' colors"]]];
     [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

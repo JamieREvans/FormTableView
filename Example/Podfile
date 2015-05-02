@@ -12,6 +12,7 @@ target 'Tests', :exclusive => true do
   pod 'FormTableView', path: '../'
 
   pod 'Kiwi'
+  pod 'OCMock', '3.1.2'
   pod 'FBSnapshotTestCase'
   
 end

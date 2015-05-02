@@ -21,7 +21,11 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		7D4433691AF4AA680077525F /* FTVViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4433681AF4AA680077525F /* FTVViewStyle.m */; };
 		7DCDD20F1ACE517A0075F62F /* FormTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DCDD20E1ACE517A0075F62F /* FormTableViewTests.m */; };
+		7DE3D37E1AF4832A005C7F30 /* FTVTextEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D37D1AF4832A005C7F30 /* FTVTextEntryView.m */; };
+		7DE3D3841AF48D2E005C7F30 /* FormTableView+Initializers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D3831AF48D2E005C7F30 /* FormTableView+Initializers.m */; };
+		7DE3D3871AF48FEB005C7F30 /* FTVPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D3861AF48FEB005C7F30 /* FTVPickerView.m */; };
 		90F1A7BFEB5F7A97A1770EBA /* libPods-FormTableView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AD5FEBB95F93310F32D3E5 /* libPods-FormTableView.a */; };
 		EFC6FD1ADA6D06B65D22BFE3 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5755D9678F15A7F7577137B /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
@@ -61,7 +65,15 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		66765500CD1273977E495EB6 /* Pods-FormTableView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormTableView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FormTableView/Pods-FormTableView.debug.xcconfig"; sourceTree = "<group>"; };
+		7D4433671AF4AA680077525F /* FTVViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVViewStyle.h; sourceTree = "<group>"; };
+		7D4433681AF4AA680077525F /* FTVViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVViewStyle.m; sourceTree = "<group>"; };
 		7DCDD20E1ACE517A0075F62F /* FormTableViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewTests.m; sourceTree = "<group>"; };
+		7DE3D37C1AF4832A005C7F30 /* FTVTextEntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVTextEntryView.h; sourceTree = "<group>"; };
+		7DE3D37D1AF4832A005C7F30 /* FTVTextEntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVTextEntryView.m; sourceTree = "<group>"; };
+		7DE3D3821AF48D2E005C7F30 /* FormTableView+Initializers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormTableView+Initializers.h"; sourceTree = "<group>"; };
+		7DE3D3831AF48D2E005C7F30 /* FormTableView+Initializers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormTableView+Initializers.m"; sourceTree = "<group>"; };
+		7DE3D3851AF48FEB005C7F30 /* FTVPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTVPickerView.h; sourceTree = "<group>"; };
+		7DE3D3861AF48FEB005C7F30 /* FTVPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTVPickerView.m; sourceTree = "<group>"; };
 		82529408963645F5B88B5F9F /* FormTableView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FormTableView.podspec; path = ../FormTableView.podspec; sourceTree = "<group>"; };
 		A22FE6CB12C79B59EB085EE7 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6E89A0AB311357D9B81045D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -138,6 +150,14 @@
 				6003F5A2195388D20070C39A /* Main_iPad.storyboard */,
 				6003F5A5195388D20070C39A /* FTVViewController.h */,
 				6003F5A6195388D20070C39A /* FTVViewController.m */,
+				7DE3D37C1AF4832A005C7F30 /* FTVTextEntryView.h */,
+				7DE3D37D1AF4832A005C7F30 /* FTVTextEntryView.m */,
+				7DE3D3851AF48FEB005C7F30 /* FTVPickerView.h */,
+				7DE3D3861AF48FEB005C7F30 /* FTVPickerView.m */,
+				7DE3D3821AF48D2E005C7F30 /* FormTableView+Initializers.h */,
+				7DE3D3831AF48D2E005C7F30 /* FormTableView+Initializers.m */,
+				7D4433671AF4AA680077525F /* FTVViewStyle.h */,
+				7D4433681AF4AA680077525F /* FTVViewStyle.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -365,8 +385,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* FTVAppDelegate.m in Sources */,
+				7D4433691AF4AA680077525F /* FTVViewStyle.m in Sources */,
 				6003F5A7195388D20070C39A /* FTVViewController.m in Sources */,
+				7DE3D3841AF48D2E005C7F30 /* FormTableView+Initializers.m in Sources */,
+				7DE3D3871AF48FEB005C7F30 /* FTVPickerView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				7DE3D37E1AF4832A005C7F30 /* FTVTextEntryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

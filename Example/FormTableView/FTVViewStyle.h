@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FTVStyle.h"
 
 @class FTVViewStyle;
 // Convenience method - returns the same value as [FTVStyle sharedInstance]

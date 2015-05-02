@@ -7,7 +7,6 @@
 //
 
 #import "FTVViewStyle.h"
-#import "FTVStyle.h"
 
 static FTVViewStyle * styleInstance = nil;
 

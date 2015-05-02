@@ -7,7 +7,7 @@
 //
 
 #import "FTVPickerView.h"
-#import "FTVStyle.h"
+#import "FTVViewStyle.h"
 #import "FTVNotifications.h"
 
 @interface FTVPickerView ()
@@ -41,7 +41,7 @@
 
 - (void)buildUI
 {
-    CGFloat horizontalInset = style().horizontalInset, splitPosition = style().cellValueFieldXPosition;
+    CGFloat horizontalInset = style().horizontalInset, splitPosition = viewStyle().cellValueFieldXPosition;
     
     self.titleLabel = [UILabel labelForString:nil
                                    attributes:[NSAttributes attributesWithFont:style().cellTitleFont
@@ -204,7 +204,7 @@
 
 - (void)buildUI
 {
-    CGFloat verticalInset = style().pickerVerticalPadding, pickerHeight = style().pickerViewHeight;
+    CGFloat verticalInset = viewStyle().pickerVerticalPadding, pickerHeight = viewStyle().pickerViewHeight;
     
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, verticalInset, width, pickerHeight)];
     [self.pickerView setDataSource:self];

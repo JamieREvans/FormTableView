@@ -8,7 +8,7 @@
 
 #import <FoundationPlus/FoundationPlus.h>
 #import "FTVTextEntryView.h"
-#import "FTVStyle.h"
+#import "FTVViewStyle.h"
 #import "FTVNotifications.h"
 
 @interface FTVTextEntryView () <UITextFieldDelegate>
@@ -83,7 +83,7 @@
 
 - (void)buildUI
 {
-    CGFloat horizontalInset = style().horizontalInset, splitPosition = style().cellValueFieldXPosition;
+    CGFloat horizontalInset = style().horizontalInset, splitPosition = viewStyle().cellValueFieldXPosition;
     
     [self setBackgroundColor:[UIColor whiteColor]];
     

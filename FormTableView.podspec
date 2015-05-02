@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
 
 	s.subspec 'FormViews' do |ss|
 	
-		ss.dependency = 'FormTableView/Basic'
+		ss.dependency 'FormTableView/Basic'
 
 		ss.source_files = 'Pod/Classes/Form Views/*.{h,m}'
 

@@ -9,7 +9,7 @@
 #import <FormTableView/FormTableView.h>
 #import <FormTableView/KeyboardListener.h>
 
-SPEC_BEGIN(UIFontTests)
+SPEC_BEGIN(FormTableViewTests)
 
 describe(@"FormTableView", ^{
     

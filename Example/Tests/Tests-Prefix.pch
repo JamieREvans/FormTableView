@@ -7,6 +7,7 @@
 #ifdef __OBJC__
 
   #import <Kiwi/Kiwi.h>
+  #import <OCMock.h>
   #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
 
 #endif

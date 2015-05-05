@@ -25,4 +25,6 @@
 - (void)setDelegate:(id<UITableViewDelegate>)delegate       UNAVAILABLE_ATTRIBUTE;
 - (void)setDataSource:(id<UITableViewDataSource>)dataSource UNAVAILABLE_ATTRIBUTE;
 
+- (BOOL)validValues;
+
 @end

@@ -6,13 +6,15 @@
 //  Copyright (c) 2015 Jamie Riley Evans. All rights reserved.
 //
 
-#import "FTVPickerView.h"
+#import "FTVPickerView+Private.h"
 #import "FTVViewStyle.h"
 #import "FTVNotifications.h"
 
 @interface FTVPickerView ()
 {
     TitleCallback _titleCallback;
+    
+    NSArray *subcells;
     
     CGFloat width, height;
 }
@@ -71,6 +73,15 @@
          // Form Editing Changed Notification
          postEditingChangedNotificationWithObject(selfBlockReference);
      }];
+}
+
+- (NSArray *)subcells
+{
+    if(!subcells)
+    {
+        subcells = @[self.pickerView];
+    }
+    return subcells;
 }
 
 - (void)updateValue
@@ -160,7 +171,7 @@
     return values;
 }
 
-- (FTVInternalPickerView *)pickerView{return self.pickerView;}
+- (FTVInternalPickerView *)pickerView{return _pickerView;}
 - (BOOL)isOpen{return self.pickerView.isOpen;}
 - (void)toggleExpansion
 {
@@ -216,7 +227,7 @@
 
 - (BOOL)isOpen{return !isHidden;}
 - (void)toggleExpansion{isHidden = !isHidden;}
-- (CGFloat)viewHeight{return (isHidden ? 0.0f : height);}
+- (CGFloat)height{return (isHidden ? 0.0f : height);}
 
 - (NSArray *)selectedRows
 {

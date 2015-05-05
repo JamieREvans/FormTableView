@@ -231,11 +231,14 @@
 
 - (BOOL)validValues
 {
-    for(NSObject <FormValueVerificationProtocol> *cellView in self.sectionedCellViews)
+    for(NSArray *cellsInSection in self.sectionedCellViews)
     {
-        if([cellView conformsToProtocol:@protocol(FormValueVerificationProtocol)] && !cellView.verificationBlock(cellView.value))
+        for(NSObject <FormValueVerificationProtocol> *cellView in cellsInSection)
         {
-            return NO;
+            if([cellView conformsToProtocol:@protocol(FormValueVerificationProtocol)] && !cellView.verificationBlock(cellView.value))
+            {
+                return NO;
+            }
         }
     }
     return YES;

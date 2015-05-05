@@ -26,14 +26,3 @@ typedef NSString * (^TitleCallback)(NSArray *titles);
 - (void)setSelectedValues:(NSArray *)selectedValues;
 
 @end
-
-// Exposed for subclassing
-@interface FTVInternalPickerView : UIView <FormCellExpansionProtocol>
-
-@property (nonatomic) NSArray *components;
-@property (nonatomic, strong) void (^selectionCallback)(NSArray *titles);
-@property (nonatomic) NSArray *componentWeights;
-
-- (NSArray *)selectedRows;
-
-@end

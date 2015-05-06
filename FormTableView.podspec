@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 	# Use 'FormTableView/Basic' to exclude 'FormViews'
 	s.subspec 'Basic' do |ss|
 	
-		s.source_files = 'Pod/Classes/*.{h,m}'
+		ss.source_files = 'Pod/Classes/*.{h,m}'
 
 	end
 

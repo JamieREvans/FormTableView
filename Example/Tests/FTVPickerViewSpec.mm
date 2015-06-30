@@ -62,7 +62,7 @@ describe(@"FormTableView with Text Entry", ^{
         
         it(@"should have a 0 height for the second cell", ^{
             
-            [ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] should equal(0.0);
+            [ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] should equal((CGFloat)0.0);
         });
         
         describe(@"when the picker is toggled", ^{
@@ -91,7 +91,7 @@ describe(@"FormTableView with Text Entry", ^{
             
             it(@"should have expanded the picker view", ^{
                 
-                [ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] should equal(40.0);
+                [ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] should equal((CGFloat)40.0);
             });
         });
     });

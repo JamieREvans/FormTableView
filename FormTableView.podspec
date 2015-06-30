@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	
 	s.name             = "FormTableView"
-	s.version          = "0.6.0"
+	s.version          = "0.6.1"
 	s.summary          = "Simple Forms and LinearLayout"
 	s.description      = <<-DESC
 	                     Either create forms in a flash or use it as a linear layout with some great built in functionality.

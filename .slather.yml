@@ -1,0 +1,5 @@
+coverage_service: coveralls
+xcodeproj: Example/FormTableView.xcodeproj/
+source_directory: Pod/Classes/
+ignore:
+  - Example/FormTableView*

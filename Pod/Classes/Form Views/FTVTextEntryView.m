@@ -75,9 +75,9 @@
     if(self = [super initWithFrame:frame])
     {
         width = frame.size.width, height = frame.size.height;
-        
+
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startEditing)]];
-        
+
         [self buildUI];
     }
     return self;
@@ -86,9 +86,9 @@
 - (void)buildUI
 {
     CGFloat horizontalInset = style().horizontalInset, splitPosition = viewStyle().cellValueFieldXPosition;
-    
+
     [self setBackgroundColor:[UIColor whiteColor]];
-    
+
     self.titleLabel = [UILabel labelForString:nil
                                    attributes:[NSAttributes attributesWithFont:style().cellTitleFont
                                                                      textColor:style().cellTitleTextColor]
@@ -97,7 +97,7 @@
                                      maxWidth:width - (horizontalInset * 2.0 + splitPosition)];
     [self.titleLabel centerInHeight:self.height forYOffset:0.0];
     [self addSubview:self.titleLabel];
-    
+
     self.valueTextField = [[UITextField alloc] initWithFrame:CGRectMake(splitPosition, 0.0, width - splitPosition- horizontalInset, height)];
     [self.valueTextField setFont:style().cellValueFont];
     [self.valueTextField setTextColor:style().cellValueTextColor];
@@ -115,11 +115,11 @@
 - (void)setType:(FormTextFieldType)type
 {
     _type = type;
-    
+
     if(type & (FormTextFieldTypePhone | FormTextFieldTypeNumbers))
     {
         [self.valueTextField setKeyboardType:UIKeyboardTypeNumberPad];
-        
+
         self.keyboardToolbarAccessory = [UIToolbar new];
         [self.keyboardToolbarAccessory sizeToFit];
         UIBarButtonItem *toolbarButton = [[UIBarButtonItem alloc] initWithTitle:(self.valueTextField.returnKeyType == UIReturnKeyNext ? @"Next" : @"Done")
@@ -131,7 +131,7 @@
     else if(self.keyboardToolbarAccessory)
     {
         [self.valueTextField setInputAccessoryView:nil];
-        
+
         self.keyboardToolbarAccessory = nil;
     }
 }
@@ -144,7 +144,7 @@
 - (void)setTitle:(NSString *)title
 {
     _title = title;
-    
+
     [self.titleLabel setText:title];
 }
 
@@ -157,9 +157,9 @@
 - (void)setReturnKeyType:(UIReturnKeyType)returnKeyType
 {
     _returnKeyType = returnKeyType;
-    
+
     [self.valueTextField setReturnKeyType:returnKeyType];
-    
+
     if(self.keyboardToolbarAccessory)
     {
         [self setType:self.type];
@@ -189,11 +189,11 @@
     if(self.type == FormTextFieldTypePhone)
     {
         NSString *unformattedPhoneNumber = [self unformatPhoneNumber:textField.text];
-        
+
         // Too big for a phone number
         if(unformattedPhoneNumber.length + string.length - range.length > 10)return NO;
         if(!range.length && unformattedPhoneNumber.length == 10)return NO;
-        
+
         if(range.length == 0)
         {
             // Forward typing, include string we just typed
@@ -205,18 +205,18 @@
             NSInteger remainingLength = unformattedPhoneNumber.length - range.length;
             unformattedPhoneNumber = [NSString stringWithFormat:@"%@", [unformattedPhoneNumber substringToIndex:remainingLength]];
         }
-        
+
         textField.text = [self formatPhoneNumber:unformattedPhoneNumber];
-        
+
         // Form Editing Changed Notification
         postEditingChangedNotificationWithObject(self);
-        
+
         return NO;
     }
-    
+
     // Form Editing Changed Notification
     postEditingChangedNotificationWithObject(self);
-    
+
     return YES;
 }
 
@@ -231,13 +231,14 @@
 {
     number = [self unformatPhoneNumber:number];
     NSString *formattedNumber = number;
-    
+
     if(number.length == 3)formattedNumber = [NSString stringWithFormat:@"( %@ )", number];
     else if(number.length > 3 && number.length < 6)formattedNumber = [NSString stringWithFormat:@"( %@ ) %@", [number substringToIndex:3], [number substringFromIndex:3]];
     else if(number.length == 6)formattedNumber = [NSString stringWithFormat:@"( %@ ) %@ - ", [number substringToIndex:3], [number substringFromIndex:3]];
     else if(number.length > 6 )formattedNumber = [NSString stringWithFormat:@"( %@ ) %@ - %@", [number substringToIndex:3], [number substringWithRange:NSMakeRange(3, 3)], [number substringFromIndex:6]];
-    
+
     return formattedNumber;
 }
 
 @end
+

@@ -1,18 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'FormTableView', :exclusive => true do
-    
+target 'FormTableView' do
   pod 'FormTableView', path: '../'
   pod 'UIKitPlus', '1.0.1'
-  
 end
 
-target 'Tests', :exclusive => true do
-    
-  pod 'FormTableView', path: '../'
-
-  pod 'Kiwi'
-  pod 'OCMock', '3.1.2'
-  pod 'FBSnapshotTestCase'
-  
+target 'Tests' do
+  pod 'Cedar'
 end

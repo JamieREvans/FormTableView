@@ -15,7 +15,7 @@ typedef NSString * (^TitleCallback)(NSArray *titles);
 @interface FTVPickerView : UIView <FormCellExpansionProtocol>
 
 @property (nonatomic) NSArray *components; // NSArray of NSArray(s) of NSString(s)
-@property (nonatomic) NSArray *componentWidthWeights; // <NSNumber> from 0.0f to 1.0f, @sum should be 1.0f
+@property (nonatomic) NSArray *componentWidthWeights; // <NSNumber> from 0.0 to 1.0, @sum should be 1.0
 @property (nonatomic) NSString *title;
 @property (nonatomic, strong) TitleCallback titleCallback;
 

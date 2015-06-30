@@ -14,6 +14,9 @@
 @property (nonatomic) NSMutableArray *headerViews; // <UIView>
 @property (nonatomic) NSMutableArray *footerViews; // <UIView>
 @property (nonatomic) BOOL editable; // Only used for FormCellViews
+// Styling
+// Defaults to use FTVStyle
+@property (nonatomic) UIColor *cellBackgroundColor;
 
 @property (nonatomic) UIEdgeInsets defaultSeparatorInsets;
 

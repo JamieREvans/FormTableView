@@ -68,6 +68,8 @@
     };
 }
 
+- (BOOL)allowsTapToResign{return NO;}
+
 - (id)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame])
@@ -90,13 +92,13 @@
     self.titleLabel = [UILabel labelForString:nil
                                    attributes:[NSAttributes attributesWithFont:style().cellTitleFont
                                                                      textColor:style().cellTitleTextColor]
-                                    yPosition:0.0f
+                                    yPosition:0.0
                                     xPosition:horizontalInset
-                                     maxWidth:width - (horizontalInset * 2.0f + splitPosition)];
-    [self.titleLabel centerInHeight:self.height forYOffset:0.0f];
+                                     maxWidth:width - (horizontalInset * 2.0 + splitPosition)];
+    [self.titleLabel centerInHeight:self.height forYOffset:0.0];
     [self addSubview:self.titleLabel];
     
-    self.valueTextField = [[UITextField alloc] initWithFrame:CGRectMake(splitPosition, 0.0f, width - splitPosition- horizontalInset, height)];
+    self.valueTextField = [[UITextField alloc] initWithFrame:CGRectMake(splitPosition, 0.0, width - splitPosition- horizontalInset, height)];
     [self.valueTextField setFont:style().cellValueFont];
     [self.valueTextField setTextColor:style().cellValueTextColor];
     [self.valueTextField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];

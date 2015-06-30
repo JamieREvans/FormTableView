@@ -48,24 +48,24 @@
     self.titleLabel = [UILabel labelForString:nil
                                    attributes:[NSAttributes attributesWithFont:style().cellTitleFont
                                                                      textColor:style().cellTitleTextColor]
-                                    yPosition:0.0f
+                                    yPosition:0.0
                                     xPosition:horizontalInset
-                                     maxWidth:width - (horizontalInset * 2.0f + splitPosition)];
-    [self.titleLabel centerInHeight:self.height forYOffset:0.0f];
+                                     maxWidth:width - (horizontalInset * 2.0 + splitPosition)];
+    [self.titleLabel centerInHeight:self.height forYOffset:0.0];
     [self addSubview:self.titleLabel];
     
     self.valueLabel = [UILabel labelForString:nil
                               attributes:[NSAttributes attributesWithFont:style().cellValueFont
                                                                 textColor:style().cellValueTextColor]
-                               yPosition:0.0f
+                               yPosition:0.0
                                xPosition:splitPosition
                                 maxWidth:(width - (splitPosition + horizontalInset))];
-    [self.valueLabel centerInHeight:height forYOffset:0.0f];
+    [self.valueLabel centerInHeight:height forYOffset:0.0];
     [self addSubview:self.valueLabel];
     
     __block UILabel *valueLabelBlockReference = self.valueLabel;
     __block typeof(self) selfBlockReference = self;
-    self.pickerView = [[FTVInternalPickerView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, 0.0f)];
+    self.pickerView = [[FTVInternalPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 0.0)];
     [self.pickerView setSelectionCallback:^(NSArray *titles)
      {
          [valueLabelBlockReference setText:selfBlockReference.titleCallback(titles)];
@@ -107,7 +107,7 @@
 {
     CGFloat weightSum = [[componentWidthWeights valueForKeyPath:@"@sum.self"] doubleValue];
     
-    if(weightSum != 1.0f)
+    if(weightSum != 1.0)
     {
         NSMutableArray *newWeights = [NSMutableArray new];
         for(NSNumber *weight in componentWidthWeights)[newWeights addObject:@(weight.doubleValue/weightSum)];
@@ -217,7 +217,7 @@
 {
     CGFloat verticalInset = viewStyle().pickerVerticalPadding, pickerHeight = viewStyle().pickerViewHeight;
     
-    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, verticalInset, width, pickerHeight)];
+    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0, verticalInset, width, pickerHeight)];
     [self.pickerView setDataSource:self];
     [self.pickerView setDelegate:self];
     [self addSubview:self.pickerView];
@@ -227,7 +227,7 @@
 
 - (BOOL)isOpen{return !isHidden;}
 - (void)toggleExpansion{isHidden = !isHidden;}
-- (CGFloat)height{return (isHidden ? 0.0f : height);}
+- (CGFloat)height{return (isHidden ? 0.0 : height);}
 
 - (NSArray *)selectedRows
 {

@@ -79,14 +79,14 @@ static KeyboardListener *sharedInstance;
 {
     CGFloat fullScreenHeight = [UIApplication sharedApplication].keyWindow.height;
     CGFloat extraHeight = (fullScreenHeight - (scrollView.superview.bottomOffset - (scrollView.superview.height - fullHeight)));
-    NSTimeInterval delay = (MAX(extraHeight/(keyboardHeight != 0.0f ? keyboardHeight : FLT_MAX), 0.0f) * keyboardAnimationDuration);
+    NSTimeInterval delay = (MAX(extraHeight/(keyboardHeight != 0.0 ? keyboardHeight : FLT_MAX), 0.0) * keyboardAnimationDuration);
     if(keyboardHeight > 0)
     {
         delay = keyboardAnimationDuration - 0.05f;
     }
     
     [UIView animateWithDuration:(keyboardAnimationDuration - delay)
-                          delay:((scrollView.height != fullHeight) ? 0.0f : delay)
+                          delay:((scrollView.height != fullHeight) ? 0.0 : delay)
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^
      {
@@ -145,7 +145,7 @@ static KeyboardListener *sharedInstance;
 
 - (void)keyboardWillHideWithNotification:(NSNotification *)note
 {
-    [self alertDelegatesForNewKeyboardHeight:0.0f
+    [self alertDelegatesForNewKeyboardHeight:0.0
                         andAnimationDuration:[self animationDurationFromNotification:note]];
 }
 

@@ -31,13 +31,13 @@ FTVViewStyle * viewStyle()
 {
     if(self = [super init])
     {
-        self.cellTitleWidth         = 120.0f;
-        self.pickerViewHeight       = 180.0f;
-        self.pickerVerticalPadding  = 20.0f;
+        self.cellTitleWidth         = 120.0;
+        self.pickerViewHeight       = 180.0;
+        self.pickerVerticalPadding  = 20.0;
     }
     return self;
 }
 
-- (CGFloat)cellValueFieldXPosition{return self.cellTitleWidth + style().horizontalInset * 2.0f;}
+- (CGFloat)cellValueFieldXPosition{return self.cellTitleWidth + style().horizontalInset * 2.0;}
 
 @end

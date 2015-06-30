@@ -31,21 +31,21 @@ FTVStyle * style()
 {
     if(self = [super init])
     {
-        self.horizontalInset        = 8.0f;
-        self.cellHeight             = 44.0f;
-        self.headerHeight           = 40.0f;
-        self.headerTitleBottomInset = 5.0f;
+        self.horizontalInset        = 8.0;
+        self.cellHeight             = 44.0;
+        self.headerHeight           = 40.0;
+        self.headerTitleBottomInset = 5.0;
         self.footerVerticalPadding  = self.horizontalInset;
         
-        self.cellTitleFont   = [UIFont fontWithType:FontTypeRegular andSize:14.0f];
-        self.cellValueFont   = [UIFont fontWithType:FontTypeRegular andSize:14.0f];
-        self.headerTitleFont = [UIFont fontWithType:FontTypeRegular andSize:16.0f];
-        self.footerTitleFont = [UIFont fontWithType:FontTypeRegular andSize:10.0f];
+        self.cellTitleFont   = [UIFont fontWithType:FontTypeRegular andSize:14.0];
+        self.cellValueFont   = [UIFont fontWithType:FontTypeRegular andSize:14.0];
+        self.headerTitleFont = [UIFont fontWithType:FontTypeRegular andSize:16.0];
+        self.footerTitleFont = [UIFont fontWithType:FontTypeRegular andSize:10.0];
         
         self.cellBackgroundColor   = [UIColor whiteColor];
-        self.cellTitleTextColor    = [UIColor color256WithWhite:111.0f];
-        self.cellValueTextColor    = [UIColor color256WithWhite:90.0f];
-        self.headerBackgroundColor = [UIColor color256WithWhite:239.0f];
+        self.cellTitleTextColor    = [UIColor color256WithWhite:111.0];
+        self.cellValueTextColor    = [UIColor color256WithWhite:90.0];
+        self.headerBackgroundColor = [UIColor color256WithWhite:239.0];
         self.headerTextColor       = self.cellValueTextColor;
         self.footerTextColor       = self.cellTitleTextColor;
     }

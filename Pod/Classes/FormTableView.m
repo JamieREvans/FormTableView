@@ -10,7 +10,7 @@
 #import "KeyboardListener.h"
 #import "FTVStyle.h"
 
-#define MINIMUM_TABLE_FOOTER 20.0f
+#define MINIMUM_TABLE_FOOTER 20.0
 
 @interface TableHeaderView : UIView
 @end
@@ -41,16 +41,16 @@
     {
         if(title.length)
         {
-            TableHeaderView *containerView = [[TableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, headerHeight)];
+            TableHeaderView *containerView = [[TableHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, headerHeight)];
             
             [containerView setBackgroundColor:style().headerBackgroundColor];
             
             UILabel *titleLabel = [UILabel labelForString:title
                                                attributes:[NSAttributes attributesWithFont:style().headerTitleFont
                                                                                  textColor:style().headerTextColor]
-                                                yPosition:0.0f
+                                                yPosition:0.0
                                                 xPosition:horizontalInset
-                                                 maxWidth:width - 2.0f * horizontalInset];
+                                                 maxWidth:width - 2.0 * horizontalInset];
             [titleLabel alignBaselineToYPosition:containerView.height - headerBottomInset];
             [containerView addSubview:titleLabel];
             
@@ -72,14 +72,14 @@
     {
         if(title.length)
         {
-            UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [UIScreen mainScreen].bounds.size.width, 0.0f)];
+            UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, 0.0)];
             
             UILabel *footerLabel = [UILabel labelForString:title
                                                 attributes:[NSAttributes attributesWithFont:style().footerTitleFont
                                                                                   textColor:style().footerTextColor]
                                                  yPosition:topInset
                                                  xPosition:horizontalInset
-                                                  maxWidth:containerView.width - horizontalInset * 2.0f];
+                                                  maxWidth:containerView.width - horizontalInset * 2.0];
             [containerView addSubview:footerLabel];
             [containerView setHeight:footerLabel.bottomOffset + bottomInset];
             
@@ -143,6 +143,9 @@
     [self addGestureRecognizer:(resigningTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignEverything:)])];
     [resigningTapGesture setDelegate:self];
     
+    // Style
+    [self setCellBackgroundColor:style().cellBackgroundColor];
+    
     // Defaults to YES
     [self setEditable:YES];
     
@@ -164,7 +167,7 @@
 // Removes extra 20pt inset at bottom of the table view
 - (void)setContentInset:(UIEdgeInsets)contentInset
 {
-    [super setContentInset:UIEdgeInsetsMake(contentInset.top, contentInset.left, contentInset.bottom - 20.0f, contentInset.right)];
+    [super setContentInset:UIEdgeInsetsMake(contentInset.top, contentInset.left, contentInset.bottom - 20.0, contentInset.right)];
 }
 
 - (void)resignEverything:(UITapGestureRecognizer *)tapGesture
@@ -294,6 +297,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setClipsToBounds:YES];
         
+        [cell setBackgroundColor:self.cellBackgroundColor];
+        
         // Prevent the cell from inheriting the table view's margin settings
         if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
         {
@@ -354,9 +359,15 @@
         
         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-    if([cellView conformsToProtocol:@protocol(FormCellSelectionProtocol)])
+    else if([cellView conformsToProtocol:@protocol(FormCellSelectionProtocol)])
     {
         [(UIView <FormCellSelectionProtocol> *)cellView selectedCell];
+    }
+    else if(!([cellView conformsToProtocol:@protocol(FormCellOverrideProtocol)] &&
+              [cellView respondsToSelector:@selector(allowsTapToResign)] &&
+              ![(id <FormCellOverrideProtocol>)cellView allowsTapToResign]))
+    {
+        [self resignEverything:nil];
     }
 }
 

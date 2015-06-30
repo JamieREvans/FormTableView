@@ -1,20 +1,8 @@
-//
-//  ArrayTests.m
-//  FoundationPlus
-//
-//  Created by Jamie Evans on 2015-03-16.
-//  Copyright (c) 2015 Jamie Riley Evans. All rights reserved.
-//
-
-#import "FTVPickerView+Private.h"
+#import <Cedar/Cedar.h>
+#import "FTVPickerView.h"
 #import "FormTableView.h"
 
 @interface FTVPickerView ()
-{
-    TitleCallback _titleCallback;
-    
-    CGFloat width, height;
-}
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *valueLabel;
@@ -29,7 +17,10 @@
 
 @end
 
-SPEC_BEGIN(FTVPickerViewTests)
+using namespace Cedar::Matchers;
+using namespace Cedar::Doubles;
+
+SPEC_BEGIN(FTVPickerViewSpec)
 
 describe(@"FTVPickerView", ^{
     
@@ -37,20 +28,20 @@ describe(@"FTVPickerView", ^{
     
     beforeEach(^{
         
-        subject = [[FTVPickerView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
+        subject = [[FTVPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
     });
     
     it(@"should have allocated it's views", ^{
         
-        [[subject.titleLabel should] beNonNil];
-        [[subject.valueLabel should] beNonNil];
-        [[subject.pickerView should] beNonNil];
+        subject.titleLabel should_not be_nil;
+        subject.valueLabel should_not be_nil;
+        subject.pickerView should_not be_nil;
     });
     
     it(@"should have a subcell that is it's internal picker", ^{
         
-        [[theValue(subject.subcells.count) should] equal:theValue(1)];
-        [[subject.subcells.firstObject should] equal:subject.pickerView];
+        subject.subcells.count should equal(1);
+        subject.subcells.firstObject should equal(subject.pickerView);
     });
 });
 
@@ -61,9 +52,9 @@ describe(@"FormTableView with Text Entry", ^{
     
     beforeEach(^{
         
-        subject = [[FTVPickerView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 50.0f)];
+        subject = [[FTVPickerView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)];
         
-        ftvSubject = [[FormTableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 500.0f)];
+        ftvSubject = [[FormTableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 500.0)];
         [ftvSubject setSectionedCellViews:@[[@[subject] arrayByAddingObjectsFromArray:subject.subcells]].mutableCopy];
     });
     
@@ -71,28 +62,36 @@ describe(@"FormTableView with Text Entry", ^{
         
         it(@"should have a 0 height for the second cell", ^{
             
-            [[theValue([ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]) should] equal:theValue(0.0f)];
+            [ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] should equal(0.0);
         });
         
         describe(@"when the picker is toggled", ^{
             
-            __block id pickerPartialMock = nil;
-            
             beforeEach(^{
                 
-                pickerPartialMock = OCMPartialMock(subject);
+                spy_on(subject);
+                
+                spy_on(subject.pickerView);
+                subject.pickerView stub_method(@selector(height)).and_return(40.0);
                 
                 [ftvSubject tableView:ftvSubject didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             });
             
+            afterEach(^{
+                
+                stop_spying_on(subject);
+                stop_spying_on(subject.pickerView);
+            });
+            
             it(@"should toggle the picker", ^{
                 
-                OCMVerify([pickerPartialMock toggleExpansion]);
+                subject should have_received(@selector(toggleExpansion));
+                subject.pickerView should have_received(@selector(toggleExpansion));
             });
             
             it(@"should have expanded the picker view", ^{
                 
-                [[theValue([ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]) shouldNot] equal:theValue(0.0f)];
+                [ftvSubject tableView:ftvSubject heightForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] should equal(40.0);
             });
         });
     });

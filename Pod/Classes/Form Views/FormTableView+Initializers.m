@@ -13,7 +13,7 @@
 
 + (CGRect)cellFrame
 {
-    return CGRectMake(0.0f, 0.0f, [UIScreen mainScreen].bounds.size.width, style().cellHeight);
+    return CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, style().cellHeight);
 }
 
 + (FTVTextEntryView *)textFieldWithTitle:(NSString *)title type:(FormTextFieldType)type andReturnCallback:(ReturnCallback)returnCallback

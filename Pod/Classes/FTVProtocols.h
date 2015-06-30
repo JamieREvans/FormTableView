@@ -60,8 +60,16 @@ typedef BOOL(^ValueVerificationBlock)(id valueObject);
 @protocol FormValueVerificationProtocol <NSObject>
 @required
 
-@property (nonatomic, strong) ValueVerificationBlock verificationBlock;
+@property (nonatomic, copy) ValueVerificationBlock verificationBlock;
 
 - (id)value;
+
+@end
+
+@protocol FormCellOverrideProtocol <NSObject>
+@optional
+
+// Default for views not conforming to this protocol is YES
+- (BOOL)allowsTapToResign;
 
 @end

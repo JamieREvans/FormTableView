@@ -17,15 +17,14 @@ typedef enum
 
 typedef void (^ReturnCallback)(UITextField *textField);
 
-@interface FTVTextEntryView : UIView <FormValueVerificationProtocol>
+@interface FTVTextEntryView : UIView <FormValueVerificationProtocol, FormCellOverrideProtocol>
 
 @property (nonatomic) NSString *title, *value;
 @property (nonatomic) FormTextFieldType type;
 // Defaults to UIReturnKeyTypeNext
 @property (nonatomic) UIReturnKeyType returnKeyType;
-@property (nonatomic, strong) ReturnCallback returnCallback;
-@property (readonly, nonatomic) UITextField *textField;
-@property (nonatomic, strong) ValueVerificationBlock verificationBlock;
+@property (nonatomic, copy) ReturnCallback returnCallback;
+@property (nonatomic, copy) ValueVerificationBlock verificationBlock;
 
 + (ReturnCallback)returnCallbackSelectTextField:(UITextField *)nextTextField;
 + (ReturnCallback)returnCallbackResignResponder;

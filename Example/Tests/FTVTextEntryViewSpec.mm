@@ -1,18 +1,8 @@
-//
-//  ArrayTests.m
-//  FoundationPlus
-//
-//  Created by Jamie Evans on 2015-03-16.
-//  Copyright (c) 2015 Jamie Riley Evans. All rights reserved.
-//
-
+#import <Cedar/Cedar.h>
 #import "FTVTextEntryView.h"
 #import "FormTableView.h"
 
 @interface FTVTextEntryView () <UITextFieldDelegate>
-{
-    CGFloat width, height;
-}
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UITextField *valueTextField;
@@ -27,7 +17,10 @@
 
 @end
 
-SPEC_BEGIN(FTVTextEntryViewTests)
+using namespace Cedar::Matchers;
+using namespace Cedar::Doubles;
+
+SPEC_BEGIN(FTVTextEntryViewSpec)
 
 describe(@"FTVTextEntryView", ^{
     
@@ -35,18 +28,18 @@ describe(@"FTVTextEntryView", ^{
     
     beforeEach(^{
         
-        subject = [[FTVTextEntryView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
+        subject = [[FTVTextEntryView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
     });
     
     it(@"should have allocated it's views", ^{
         
-        [[subject.titleLabel should] beNonNil];
-        [[subject.valueTextField should] beNonNil];
+        subject.titleLabel should_not be_nil;
+        subject.valueTextField should_not be_nil;
     });
     
     it(@"should not have allocated a toolbar accessory", ^{
         
-        [[subject.keyboardToolbarAccessory should] beNil];
+        subject.keyboardToolbarAccessory should be_nil;
     });
     
     describe(@"when setting the type to be a numbers keyboard", ^{
@@ -58,7 +51,7 @@ describe(@"FTVTextEntryView", ^{
         
         it(@"should have a toolbar accessory", ^{
             
-            [[subject.keyboardToolbarAccessory should] beNonNil];
+            subject.keyboardToolbarAccessory should_not be_nil;
         });
         
         describe(@"and setting it back to a text entry field", ^{
@@ -70,7 +63,7 @@ describe(@"FTVTextEntryView", ^{
             
             it(@"should not have a toolbar accessory", ^{
                 
-                [[subject.keyboardToolbarAccessory should] beNil];
+                subject.keyboardToolbarAccessory should be_nil;
             });
         });
     });
@@ -84,25 +77,22 @@ describe(@"FTVTextEntryView", ^{
         
         describe(@"and the keyboard is resigned", ^{
             
-            __block id partialSubjectMock = nil;
-            __block UITextField *mockedTextField = nil;
-            
             beforeEach(^{
                 
-                partialSubjectMock = OCMPartialMock(subject);
-                mockedTextField = OCMClassMock([UITextField class]);
+                spy_on(subject);
+                subject stub_method(@selector(valueTextField)).and_return(nice_fake_for([UITextField class]));
                 
-                [subject textFieldShouldReturn:mockedTextField];
+                [subject textFieldShouldReturn:subject.valueTextField];
             });
             
             it(@"should call the return callback", ^{
                 
-                OCMVerify([subject returnCallback]);
+                subject should have_received(@selector(returnCallback));
             });
             
             it(@"should try to resign the responder", ^{
                 
-                OCMVerify([mockedTextField resignFirstResponder]);
+                subject.valueTextField should have_received(@selector(resignFirstResponder));
             });
         });
     });
@@ -118,7 +108,7 @@ describe(@"FTVTextEntryView", ^{
             
             it(@"should return the text as the 'value'", ^{
                 
-                [[subject.value should] equal:@"Testing text"];
+                subject.value should equal(@"Testing text");
             });
         });
     });
@@ -131,8 +121,8 @@ describe(@"FormTableView with Text Entry", ^{
     
     beforeEach(^{
         
-        ftvSubject = [[FormTableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 500.0f)];
-        [ftvSubject setSectionedCellViews:@[@[(subject = [[FTVTextEntryView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 50.0f)])]].mutableCopy];
+        ftvSubject = [[FormTableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 500.0)];
+        [ftvSubject setSectionedCellViews:@[@[(subject = [[FTVTextEntryView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 50.0)])]].mutableCopy];
     });
     
     context(@"FormValueVerificationBlock", ^{
@@ -153,7 +143,7 @@ describe(@"FormTableView with Text Entry", ^{
                 
                 it(@"the table's values should be valid", ^{
                     
-                    [[theValue([ftvSubject validValues]) should] equal:theValue(YES)];
+                    [ftvSubject validValues] should equal(YES);
                 });
             });
             
@@ -166,7 +156,7 @@ describe(@"FormTableView with Text Entry", ^{
                 
                 it(@"the table's values should be valid", ^{
                     
-                    [[theValue([ftvSubject validValues]) should] equal:theValue(NO)];
+                    [ftvSubject validValues] should equal(NO);
                 });
             });
         });

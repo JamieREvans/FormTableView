@@ -72,7 +72,7 @@ describe(@"FormTableView with Text Entry", ^{
                 spy_on(subject);
                 
                 spy_on(subject.pickerView);
-                subject.pickerView stub_method(@selector(height)).and_return(40.0);
+                subject.pickerView stub_method(@selector(height)).and_return((CGFloat)40.0);
                 
                 [ftvSubject tableView:ftvSubject didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             });

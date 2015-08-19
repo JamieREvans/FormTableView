@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 VRG Interactive Inc. All rights reserved.
 //
 
-#import <UIKitPlus+Basic.h>
+#import "UIKitPlus+Basic.h"
 #import "KeyboardListener.h"
 
 static KeyboardListener *sharedInstance;
@@ -38,7 +38,7 @@ static KeyboardListener *sharedInstance;
     {
         CFArrayCallBacks callbacks = {0, NULL, NULL, CFCopyDescription, CFEqual};
         delegates = (__bridge_transfer NSMutableArray *)(CFArrayCreateMutable(0, 0, &callbacks));
-        
+
         NSNotificationCenter *noteCenter = [NSNotificationCenter defaultCenter];
         [noteCenter addObserver:self selector:@selector(keyboardWillShowWithNotification:) name:UIKeyboardWillShowNotification object:nil];
         [noteCenter addObserver:self selector:@selector(keyboardWillHideWithNotification:) name:UIKeyboardWillHideNotification object:nil];
@@ -84,7 +84,7 @@ static KeyboardListener *sharedInstance;
     {
         delay = keyboardAnimationDuration - 0.05f;
     }
-    
+
     [UIView animateWithDuration:(keyboardAnimationDuration - delay)
                           delay:((scrollView.height != fullHeight) ? 0.0 : delay)
                         options:UIViewAnimationOptionCurveEaseOut

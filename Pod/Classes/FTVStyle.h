@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Jamie Riley Evans. All rights reserved.
 //
 
-#import <UIKitPlus+Basic.h>
+#import "UIKitPlus+Basic.h"
 #import <Foundation/Foundation.h>
 
 @class FTVStyle;

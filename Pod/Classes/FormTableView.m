@@ -120,12 +120,6 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
-{
-    // Don't allow the user to set the table style
-    return [self initWithFrame:frame];
-}
-
 - (void)commonInit
 {
     width = self.width, height = self.height;

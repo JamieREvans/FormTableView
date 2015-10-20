@@ -77,7 +77,7 @@ static KeyboardListener *sharedInstance;
 // Convenience
 + (void)adjustScrollView:(UIScrollView *)scrollView fullHeight:(CGFloat)fullHeight withKeyboardHeight:(CGFloat)keyboardHeight animationDuration:(NSTimeInterval)keyboardAnimationDuration
 {
-    CGFloat fullScreenHeight = [UIApplication sharedApplication].keyWindow.height;
+    CGFloat fullScreenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
     CGFloat extraHeight = (fullScreenHeight - (scrollView.superview.bottomOffset - (scrollView.superview.height - fullHeight)));
     NSTimeInterval delay = (MAX(extraHeight/(keyboardHeight != 0.0 ? keyboardHeight : FLT_MAX), 0.0) * keyboardAnimationDuration);
     if(keyboardHeight > 0)

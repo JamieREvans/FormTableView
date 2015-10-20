@@ -24,6 +24,8 @@
 + (NSMutableArray *)headerViewsWithTitles:(NSArray *)titles;
 + (NSMutableArray *)footerViewsWithTitles:(NSArray *)titles;
 
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style NS_UNAVAILABLE;
+
 // Make these methods private
 - (void)setDelegate:(id<UITableViewDelegate>)delegate       UNAVAILABLE_ATTRIBUTE;
 - (void)setDataSource:(id<UITableViewDataSource>)dataSource UNAVAILABLE_ATTRIBUTE;

@@ -14,6 +14,7 @@
 @property (nonatomic) NSMutableArray *headerViews; // <UIView>
 @property (nonatomic) NSMutableArray *footerViews; // <UIView>
 @property (nonatomic) BOOL editable; // Only used for FormCellViews
+@property (nonatomic) Class tableViewCellClass; // UITableViewCell subclass to use in creating table view cells.
 // Styling
 // Defaults to use FTVStyle
 @property (nonatomic) UIColor *cellBackgroundColor;

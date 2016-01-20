@@ -288,7 +288,9 @@
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        Class klass = self.tableViewCellClass? self.tableViewCellClass : [UITableViewCell class];
+        cell = [[klass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+
         [cell setClipsToBounds:YES];
         
         [cell setBackgroundColor:self.cellBackgroundColor];
